@@ -1,7 +1,7 @@
 # Youtube-Downloader
 A command-line tool written in python to download content as either a video or audio file.
 
-![image](https://user-images.githubusercontent.com/64972947/128039631-06e103b6-327f-44fe-a353-33c0c185c65c.png)
+![image](https://user-images.githubusercontent.com/64972947/128041787-a80f5501-421c-475e-83c9-544c561be18b.png)
 
 # Disclaimer
 I do not condone piracy of any sort, nor is that the intended usage of this tool.
