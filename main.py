@@ -32,10 +32,10 @@ class MediaDownloader():
         # Video
         if string_code == "0":
             self.ydl_opts = {
-                #'format': 'bestvideo[ext=mp4]+bestaudio/best[ext=mp4]/best[ext=mp3]', # why doesn't this work?
-                'format': '137+140',
+                'format': 'bestvideo[ext=mp4]/best+bestaudio/best',
                 'video-format': 'mp4',
                 "outtmpl": rf"{dir}" + "/%(title)s.%(ext)s",    # escape dir. what is the %(key)s thing? (probably a tag handled by ytdl)
+                                                                # forward&backslashes are a point of failure
             }
             
         # Music
