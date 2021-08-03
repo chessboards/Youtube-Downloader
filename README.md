@@ -5,4 +5,4 @@ A command-line tool written in python to download content as either a video or a
 
 # Disclaimer
 I do not condone piracy of any sort, nor is that the intended usage of this tool.
-The downloaded video shown in the screenshot above is merely for example purposes. The file was removed afterward. In no way is this program affiliated or associated with the creator of the video displayed. Use this tool at your own risk.
+The downloaded video shown in the screenshot above is merely for example purposes, and the file was removed afterwards. In no way is this program affiliated or associated with the creator of the video displayed. Before using this tool, ensure that you follow the Terms Of Service and guidelines of Youtube. Use this tool at your own risk.
