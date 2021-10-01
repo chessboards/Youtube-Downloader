@@ -5,7 +5,7 @@ import re
 #               use debugger to avoid execution policy shenanigans
 
 videoChoices = ["v", "video", "0", "vid", "mp4"]
-audioChoices = ["a", "audio", "1", "aud", "sound", "mp3"]
+audioChoices = ["a", "audio", "1", "aud", "sound", "webm"]
 
 index = 0
 
