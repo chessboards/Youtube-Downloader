@@ -1,74 +1,43 @@
-import youtube_dl
-
 # Notes:
     # notetoself: https://code.visualstudio.com/docs/python/environments
-    # clearer docs: https://youtube-dl.readthedocs.io/en/latest/
-    # the github youtube-dl documentation needs to be written better
-
-class MediaDownloader():
-    def __init__(self):
-        """Initializes an empty option dictionary for youtube-dl"""
-        self.ydl_opts = {}
-        
-    def downloadContent(self, url):
-        """Asks youtube-dl to download the media based on the options defined in self.ydl_opts.
-           Returns void."""
-        print("\n")     # formatting
-        
-        # If the user has selected an available content type, 
-        if len( self.ydl_opts.keys() ) != 0:
-            try:
-                with youtube_dl.YoutubeDL(self.ydl_opts) as ydl:
-                    ydl.download([rf"{url}"])       # escapes url
-                    ydl.cache.remove()              # finally, clear the cache for privacy (and incorrect video downloads for certain errors)
-                    
-                print("\nFile has been downloaded!")
-            except Exception as e:
-                print(e.args[0])
-            
-    def setContentType(self, string_code):
-        """Sets the content type to either video format or audio format based on the user's input.
-           Returns bool based on whether user input matches the available content types."""
-        # Video
-        if string_code == "0":
-            self.ydl_opts = {
-                'format': 'bestvideo[ext=mp4]/best+bestaudio/best',
-                'video-format': 'mp4',
-                "outtmpl": rf"{dir}" + "/%(title)s.%(ext)s",    # escape dir. what is the %(key)s thing? (probably a tag handled by ytdl)
-                                                                # forward&backslashes are a point of failure
-            }
-            
-        # Music
-        elif string_code == "1":
-            self.ydl_opts = {
-                'format': 'bestaudio/best',
-                'postprocessors': [{
-                    'key': 'FFmpegExtractAudio',
-                    'preferredcodec': 'mp3',
-                }],
-                'audio-format': 'mp3',
-                "outtmpl": rf"{dir}" + "/%(title)s.%(ext)s",
-            }
-            
-        # Unkown content type. Error
-        else:
-            print("Error: Invalid content type.")
-            return False    # return an error code
-            
-        # otherwise if no error occured, return with success.
-        return True
+    #             https://pytube.io/en/latest/user/streams.html#downloading-streams
     
-### Main ###
+from pytube import YouTube
+
+
+index = 0
+
+def progressCallback(_stream, _chunk, bytes_remaining):
+    global index
+    animationReel = ["/", ".", "\\"]
+    
+    # 3 - 1 = 0,1,2
+    if index > len(animationReel) - 1:
+        index = 0
+        
+    print(f"{animationReel[index]} | {bytes_remaining} bytes remaining...")
+    
+    index += 1
+    
+    
 if __name__ == "__main__":
-    print("Welcome to the simple youtube video downloader.")
-    print("\nIf you recieve errors related to ffmpeg, try running ffmpeg.exe from https://www.gyan.dev/ffmpeg/builds/.")
+    # vars
+    link = input("Enter youtube url: ")
+    destin = input("Full path destination: ")
+    filename = input("File name (leave blank to use video title): ")
 
-    dir = input ("\nEnter a full-path directory: ")
-    url = input("Enter the whole video URL: ")
-    ctype = input("Video (0) or music file (1)?: ")
-    
-    downloader = MediaDownloader()
-    success = downloader.setContentType(ctype)
-    
-    if success:
-        downloader.downloadContent(url)
+    video = YouTube(link, progressCallback)
+    stream = (
+                video.streams
+                             .filter(file_extension='mp4')
+                             .get_highest_resolution()
+             )
+
+    # default filename to title
+    if (filename == "" or filename == " "):
+        filename = video.title
+        
+    print(f"\nDownloading {video.title} by {video.author}")
+
+    stream.download(destin, filename + ".mp4") # extension not automatically added
+    print("Done!")
