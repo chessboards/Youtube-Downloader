@@ -42,7 +42,7 @@ def main():
     
     extension = ""
     if filetype.lower() in videoChoices: extension = "mp4"
-    if filetype.lower() in audioChoices: extension = "webm" # lib only allows webm
+    elif filetype.lower() in audioChoices: extension = "webm" # lib only allows webm
     else:
         print("Error: Invalid filetype.")
         return # exit program
