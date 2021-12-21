@@ -12,7 +12,7 @@ Try a virtual environment
 # Why did I make this?
 Usually online downloaders are riddled with ads, and I wanted a tool that I could easily reuse without having to tediously re-implement or fine tune every time. It's also extremely fast and lightweight contrasted to the long download times browsers take.
 
-# Nothing happens when I run the program / I get `Nonetype object has no attribute span`
+# Nothing happens when I run the program / it errors with `Nonetype object has no attribute span`
 Take a look at https://stackoverflow.com/questions/70060263/pytube-attributeerror-nonetype-object-has-no-attribute-span for the time being. I expect Pytube will update to fix this issue.
 
 # Disclaimer
