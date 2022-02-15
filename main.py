@@ -2,8 +2,10 @@ from pytube import YouTube
 import re
 
 # note to self: https://code.visualstudio.com/docs/python/environments
-#               use debugger to avoid execution policy shenanigans
-
+#               use debugger to quickly run
+#               Policy shenanigans?:
+#                       Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+#               If you get a span error, update the package using `pip install --upgrade pytube`
 videoChoices = ["v", "video", "0", "vid", "mp4"]
 audioChoices = ["a", "audio", "1", "aud", "sound", "webm"]
 
