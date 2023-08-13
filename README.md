@@ -1,11 +1,6 @@
 # Youtube-Downloader
 A command-line tool written in python to download content as either a video or audio file.
 
-
-![image](https://user-images.githubusercontent.com/64972947/135674769-1ce16875-5284-464a-b3e6-08e66fb507f9.png)
-
-<p>console font used: Fira Mono by Mozilla</p>
-
 # The libary required isn't working
 Try a virtual environment
 
